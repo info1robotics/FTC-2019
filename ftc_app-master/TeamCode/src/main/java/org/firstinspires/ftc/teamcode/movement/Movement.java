@@ -7,6 +7,12 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 public class Movement {
 
+    private static final Power COMPENSATIONS = new Power(1.0, .95, .95, .95);
+
+    private static Power addCompensation(Power raw) {
+        return raw.multiply(COMPENSATIONS);
+    }
+
     private static final DirectionsList latest_directions = new DirectionsList();
 
     private static final double CORRECTION_COEFFICIENT = 0.25;
@@ -100,7 +106,7 @@ public class Movement {
         result.FL = result.BL = power * sign;
         result.FR = result.BR = power * sign * -1.0;
 
-        return result;
+        return addCompensation(result);
     }
 
     private static Power moveSideways(double power, double sign) {
@@ -109,7 +115,7 @@ public class Movement {
         result.FL = result.FR = sign * power * -1.0;
         result.BL = result.BR = sign * power;
 
-        return result;
+        return addCompensation(result);
     }
 
     private static Power moveFrontRight(double power, double alpha) {
@@ -122,7 +128,7 @@ public class Movement {
         double correctionPower = getCorrectionPower(power, angleDiff);
         result.FR = Math.signum(angleDiff) * correctionPower;
 
-        return result;
+        return addCompensation(result);
     }
 
     private static Power moveFrontLeft(double power, double alpha) {
@@ -135,7 +141,7 @@ public class Movement {
         double correctionPower = getCorrectionPower(power, angleDiff);
         result.FL = Math.signum(angleDiff) * correctionPower;
 
-        return result;
+        return addCompensation(result);
     }
 
     private static Power moveBackRight(double power, double alpha) {
@@ -148,7 +154,7 @@ public class Movement {
         double correctionPower = getCorrectionPower(power, angleDiff);
         result.BR = Math.signum(angleDiff) * correctionPower;
 
-        return result;
+        return addCompensation(result);
     }
 
     private static Power moveBackLeft(double power, double alpha) {
@@ -161,7 +167,7 @@ public class Movement {
         double correctionPower = getCorrectionPower(power, angleDiff);
         result.BL = Math.signum(angleDiff) * correctionPower;
 
-        return result;
+        return addCompensation(result);
     }
 
 }

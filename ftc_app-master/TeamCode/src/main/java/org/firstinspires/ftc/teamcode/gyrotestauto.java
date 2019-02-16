@@ -14,14 +14,16 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 @Autonomous
 public class gyrotestauto extends LinearOpMode {
-private DcMotor motorFL;
-private DcMotor motorFR;
-private DcMotor motorBL;
-private DcMotor motorBR;
-BNO055IMU imu;
-Orientation lastAngles= new Orientation();
-double globalAngle, correction;
-double power=0.7;
+
+    private DcMotor motorFL;
+    private DcMotor motorFR;
+    private DcMotor motorBL;
+    private DcMotor motorBR;
+    BNO055IMU imu;
+    Orientation lastAngles= new Orientation();
+    double globalAngle, correction;
+    double power=0.1;
+
     @Override
     public void runOpMode(){
         motorFL=hardwareMap.get(DcMotor.class,"motorFL");
@@ -42,6 +44,7 @@ double power=0.7;
         telemetry.update();
         while(opModeIsActive()){
             correction=checkDirection();
+            telemetry.addData("0. Global angle: ", globalAngle);
             telemetry.addData("1 imu heading", lastAngles.firstAngle);
             telemetry.addData("2 global heading", globalAngle);
             telemetry.addData("3 correction", correction);
@@ -52,11 +55,13 @@ double power=0.7;
             motorBR.setPower(power+correction);
         }
     }
+
     private void resetAngle()
     {
         lastAngles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         globalAngle = 0;
     }
+
     private double getAngle()
     {
         Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
@@ -69,6 +74,7 @@ double power=0.7;
         lastAngles = angles;
         return globalAngle;
     }
+
     private double checkDirection()
     {
         double correction, angle, gain = 0.25;

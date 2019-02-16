@@ -37,18 +37,13 @@ public class HardwareTeleOp {
         motorMinEnlarge.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorMinEnlarge.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
-    public void setDirection(double FLD,double FRD,double BLD,double BRD){
+    public void setDirection(double FLD, double FRD, double BLD, double BRD){
         motorFL.setPower(FLD*movePower);
         motorFR.setPower(FRD*movePower);
         motorBL.setPower(BLD*movePower);
         motorBR.setPower(BRD*movePower);
     }
-    public void setRotation(double dir){
-        motorFL.setPower(rotationPower*dir);
-        motorFR.setPower(rotationPower*dir);
-        motorBL.setPower(rotationPower*dir);
-        motorBR.setPower(rotationPower*dir);
-    }
+
     public void setEnlarge(){
         motorMinEnlarge.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         motorMinEnlarge.setMode(DcMotor.RunMode.RUN_TO_POSITION);
