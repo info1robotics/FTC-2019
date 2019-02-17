@@ -16,6 +16,7 @@ public class tryHard extends LinearOpMode {
     Orientation angles;
     @Override
     public void runOpMode(){
+
         robot.init(hardwareMap);
         BNO055IMU.Parameters parameters=new BNO055IMU.Parameters();
         parameters.mode=BNO055IMU.SensorMode.IMU;

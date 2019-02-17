@@ -15,6 +15,10 @@ public class Power {
         this.FL = this.FR = this.BR = this.BL = power;
     }
 
+    public Power (AsympthoticalPower power) {
+        this.FL = this.FR = this.BR = this.BL = power.getPower();
+    }
+
     public Power(double fr, double fl, double br, double bl) {
         this.FR = fr;
         this.FL = fl;

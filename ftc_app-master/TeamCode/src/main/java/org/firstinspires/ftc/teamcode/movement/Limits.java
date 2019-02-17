@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.movement;
 
+@Deprecated
 public class Limits {
     public static final Interval RIGHT_1 = new Interval(0, 22.5);
     public static final Interval RIGHT_2 = new Interval(337.5, 360);

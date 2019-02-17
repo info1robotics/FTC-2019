@@ -13,6 +13,8 @@ public class Motors {
     private DcMotor BL;
     private Telemetry telemetryLogger;
 
+    private final Power WEIGHT_CORRECTIONS = new Power(1, 1, 1, 1);
+
     public Motors(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetryLogger = telemetry;
         telemetry.addData("Movement motors", "Setting up.");
@@ -41,6 +43,7 @@ public class Motors {
     }
 
     public void setPower(Power powers) {
+        powers = powers.multiply(this.WEIGHT_CORRECTIONS);
         this.FR.setPower(powers.FR);
         this.FL.setPower(powers.FL);
         this.BR.setPower(powers.BR);

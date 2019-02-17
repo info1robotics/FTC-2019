@@ -16,14 +16,16 @@ public class MoveWithGyro {
 
     public BNO055IMU imu;
     private Orientation lastAngle = new Orientation();
-    private double movementPower;
-    private double correctionPower = .1;
+    private AsympthoticalPower movementPower;
+    private double correctionPower = .2;
+    private double rotationPower = .2;
     private Telemetry telemetryLogger;
     public Motors motors;
     private LinearOpMode opMode;
 
     public MoveWithGyro(double power, Telemetry telemetry, HardwareMap hardwareMap,
                         LinearOpMode opMode) {
+        this.movementPower = new AsympthoticalPower(power);
         this.setMovementPower(power);
         this.telemetryLogger = telemetry;
         this.motors = new Motors(hardwareMap, telemetry);
@@ -46,8 +48,7 @@ public class MoveWithGyro {
     }
 
     public void setMovementPower(double power) throws IllegalArgumentException {
-        if (power < -1 || power > 1) throw new IllegalArgumentException();
-        this.movementPower = power;
+        this.movementPower.setNewTargetPower(power);
     }
 
     private void move(Power signs) {
@@ -65,18 +66,22 @@ public class MoveWithGyro {
     }
 
     public void moveForward() {
+        this.movementPower.setDirection(DirectionCodes.FORWARD);
         this.move(Signs.FORWARD);
     }
 
     public void moveBack() {
+        this.movementPower.setDirection(DirectionCodes.BACKWARD);
         this.move(Signs.BACKWARD);
     }
 
     public void moveRight() {
+        this.movementPower.setDirection(DirectionCodes.RIGHT);
         this.move(Signs.RIGHT);
     }
 
     public void moveLeft() {
+        this.movementPower.setDirection(DirectionCodes.LEFT);
         this.move(Signs.LEFT);
     }
 
@@ -88,22 +93,23 @@ public class MoveWithGyro {
                 (int) signs.BR * ticks,(int) signs.BL *  ticks
         );
 
-        Power power = new Power(movementPower);
-        motors.setPower(power.multiply(signs));
+        //this.resetAngle();
 
-        this.resetAngle();
+        Power power = new Power(movementPower);
+        motors.setPower(power);
 
         while (this.opMode.opModeIsActive() && this.motors.allBusy()) {
-            move(new Power(1.0));
+            Power movementSigns = new Power(1.0);
+            move(movementSigns);
         }
     }
 
     /** Move the robot forward for a fixed number of ticks.
      *
      * @param ticks Desired number of motor ticks to move for.
-     * @return The resulting powers for the 4 motors.
      */
     public void moveForwardAutonomous(int ticks) {
+        this.movementPower.setDirection(DirectionCodes.FORWARD);
         this.moveAutonomous(ticks, Signs.FORWARD);
     }
 
@@ -113,47 +119,58 @@ public class MoveWithGyro {
      * @return The resulting powers for the 4 motors.
      */
     public void moveBackAutonomous(int ticks) {
+        this.movementPower.setDirection(DirectionCodes.BACKWARD);
         this.moveAutonomous(ticks, Signs.BACKWARD);
     }
 
     /** Move the robot to the right for a fixed number of ticks.
      *
      * @param ticks Desired number of motor ticks to move for.
-     * @return The resulting powers for the 4 motors.
      */
     public void moveRightAutonomous(int ticks) {
+        this.movementPower.setDirection(DirectionCodes.RIGHT);
         this.moveAutonomous(ticks, Signs.RIGHT);
     }
 
     /** Move the robot to the left for a fixed number of ticks.
      *
      * @param ticks Desired number of motor ticks to move for.
-     * @return The resulting powers for the 4 motors.
      */
     public void moveLeftAutonomous(int ticks) {
+        this.movementPower.setDirection(DirectionCodes.LEFT);
         this.moveAutonomous(ticks, Signs.LEFT);
     }
 
     private double getAngleDiff(Orientation angle) {
         Orientation angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
         double deltaAngle = angles.firstAngle - angle.firstAngle;
-        this.telemetryLogger.addData("Angle", deltaAngle);
+        this.telemetryLogger.addData("Angle diff", deltaAngle);
+        this.telemetryLogger.addData("Original", angle.firstAngle);
+        this.telemetryLogger.addData("Current", angles.firstAngle);
         this.telemetryLogger.update();
         while (deltaAngle < -180) deltaAngle += 360;
         while (deltaAngle > 180) deltaAngle -= 360;
         return deltaAngle;
     }
 
-    private void resetAngle()
+    public void resetAngle()
     {
-        this.lastAngle = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX,
-                AngleUnit.DEGREES);
+        this.lastAngle = getCurrentAngle();
+    }
+
+    private Orientation getCurrentAngle() {
+        return imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
     }
 
     public void correctPosition() {
+        AnglesList anglesList = new AnglesList();
         double deltaAngle = getAngleDiff(this.lastAngle);
+        anglesList.add(deltaAngle);
+        //this.rotate(-1 * Math.signum(deltaAngle) * Math.max((Math.abs(deltaAngle) - 5), 0), false);
 
-        while (Math.abs(deltaAngle) > 1) {
+        this.motors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        while (Math.abs(deltaAngle) > 3 && !anglesList.stayedConstant()) {
             if (deltaAngle < 0) {
                 // Turn left
                 motors.setPower(new Power(this.correctionPower));
@@ -162,9 +179,32 @@ public class MoveWithGyro {
                 motors.setPower(new Power(-1.0 * this.correctionPower));
             }
             deltaAngle = getAngleDiff(this.lastAngle);
+            anglesList.add(deltaAngle);
         }
 
         this.motors.setPower(new Power());
+
+    }
+
+    public void stopAll() {
+        motors.setPower(new Power());
+    }
+
+    public void rotate(double angle, boolean resetAngle) {
+        Power signs;
+        if (angle < 0) signs = Signs.ROTATE_RIGHT;
+        else signs = Signs.ROTATE_LEFT;
+        this.motors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        Orientation refAngle = getCurrentAngle();
+        double angleDiff = getAngleDiff(refAngle);
+
+        while (Math.abs(angleDiff) < Math.abs(angle)) {
+            this.motors.setPower(signs.multiply(new Power(this.rotationPower)));
+            angleDiff = getAngleDiff(refAngle);
+        }
+        this.stopAll();
+        if (resetAngle) this.resetAngle();
     }
 
 }

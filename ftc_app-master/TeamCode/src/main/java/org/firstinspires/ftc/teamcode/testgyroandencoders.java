@@ -22,7 +22,7 @@ public class testgyroandencoders extends LinearOpMode {
     BNO055IMU imu;
     Orientation lastAngles= new Orientation();
     double globalAngle, correction;
-    double power=0.2;
+    double power=0.7;
     Motors motors;
     @Override
     public void runOpMode(){

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
-
+@Deprecated
 public class Movement {
 
     private static final Power COMPENSATIONS = new Power(1.0, .95, .95, .95);

@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.movement;
 
+@Deprecated
 public class Direction {
 
     private double x;
