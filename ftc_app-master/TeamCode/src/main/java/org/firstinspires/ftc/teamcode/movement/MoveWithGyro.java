@@ -26,7 +26,6 @@ public class MoveWithGyro {
     public MoveWithGyro(double power, Telemetry telemetry, HardwareMap hardwareMap,
                         LinearOpMode opMode) {
         this.movementPower = new AsympthoticalPower(power);
-        this.setMovementPower(power);
         this.telemetryLogger = telemetry;
         this.motors = new Motors(hardwareMap, telemetry);
         this.opMode = opMode;
