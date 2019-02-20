@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.movement.MoveWithGyro;
@@ -16,22 +17,36 @@ public class AutonomousTestCrater extends LinearOpMode {
     private Servo servoGold;
     private static final int CM_TO_TICKS_FACTOR = 112;
     private static final double DEFAULT_POWER = 0.7;
+    private DcMotor motorArm;
 
     @Override
     public void runOpMode() {
         movement = new MoveWithGyro(DEFAULT_POWER, telemetry, hardwareMap, this);
         webCamViewer = new WebcamVision(hardwareMap, telemetry);
         servoGold = hardwareMap.get(Servo.class, "servoGold");
-        movement.resetAngle();
+        motorArm=hardwareMap.get(DcMotor.class,"motorArm");
+        motorArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motorArm.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         telemetry.update();
         servoGold.setPosition(0);
 
         waitForStart();
 
         // TODO: Add code for going down from lander here
+        motorArm.setTargetPosition(-6078);
+        motorArm.setPower(1);
+        while (opModeIsActive() && motorArm.isBusy()){
+            telemetry.addData("ticks",motorArm.getCurrentPosition());
+            telemetry.update();
+            idle();
+        }
+        motorArm.setPower(0);
+        sleep(1000);
+
+        movement.resetAngle();
 
         // Moving right 10 cm
-        movement.moveRightAutonomous(cmToTicks(10));
+        movement.moveRightAutonomous(cmToTicks(7));
         movement.correctPosition();
 
         // Looking for gold
@@ -63,8 +78,6 @@ public class AutonomousTestCrater extends LinearOpMode {
     private void foundInFirstTryPolicy() {
         movement.moveBackAutonomous(cmToTicks(47));
         movement.correctPosition();
-        movement.moveBackAutonomous(cmToTicks(5));
-        movement.correctPosition();
         engage(0, 0);
         movement.moveRightAutonomous(cmToTicks(95));
         movement.correctPosition();
@@ -79,8 +92,10 @@ public class AutonomousTestCrater extends LinearOpMode {
     private void foundInThirdTryPolicy() {
         movement.moveRightAutonomous(cmToTicks(82));
         movement.correctPosition();
+        movement.moveBackAutonomous(cmToTicks(20));
+        movement.correctPosition();
         engage(0,0);
-        movement.moveRightAutonomous(cmToTicks(70));
+        movement.moveRightAutonomous(cmToTicks(65));
     }
 
     private void lookForGold() {

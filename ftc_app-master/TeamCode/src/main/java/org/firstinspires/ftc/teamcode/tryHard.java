@@ -27,6 +27,8 @@ public class tryHard extends LinearOpMode {
         telemetry.addData("Status", "Initialized");
         telemetry.update();
         Movement.set_functions();
+        robot.motorArm.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.motorArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         waitForStart();
 
         while(opModeIsActive()){
@@ -36,14 +38,15 @@ public class tryHard extends LinearOpMode {
             double armPower=gamepad1.right_stick_y;
             double rotationRightPower=gamepad1.right_trigger;
             double rotationLeftPower=gamepad1.left_trigger;
-            Power powers = Movement.move(xPower, -1.0 * yPower, telemetry);
-            robot.motorFL.setPower(powers.FL);
-            robot.motorFR.setPower(powers.FR);
-            robot.motorBL.setPower(powers.BL);
-            robot.motorBR.setPower(powers.BR);
+            //Power powers = Movement.move(xPower, -1.0 * yPower, telemetry);
+            //robot.motorFL.setPower(powers.FL);
+            //robot.motorFR.setPower(powers.FR);
+            //robot.motorBL.setPower(powers.BL);
+            //robot.motorBR.setPower(powers.BR);
             robot.motorArm.setPower(armPower);
             //robot.motorMinRaise.setPower(MinRaisePower/3);
             telemetry.addData("ticks",robot.motorArm.getCurrentPosition());
+            telemetry.update();
             if(gamepad1.dpad_up){
                 while(gamepad1.dpad_up)
                 robot.setDirection(-1,1,-1,1);
