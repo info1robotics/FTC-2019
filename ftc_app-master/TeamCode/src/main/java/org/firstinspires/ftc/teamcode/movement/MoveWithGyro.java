@@ -20,20 +20,16 @@ public class MoveWithGyro {
     private double correctionPower = .2;
     private double rotationPower = .2;
     private Telemetry telemetryLogger;
-    public Motors motors;
+    public MovementMotors movementMotors;
     private LinearOpMode opMode;
 
-    public MoveWithGyro(double power, Telemetry telemetry, HardwareMap hardwareMap,
-                        LinearOpMode opMode) {
-        this.movementPower = new AsympthoticalPower(power);
+    public MoveWithGyro(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode opMode) {
+        this.movementPower = new AsympthoticalPower(Constants.POWER_HIGHER_LIMIT);
         this.telemetryLogger = telemetry;
-        this.motors = new Motors(hardwareMap, telemetry);
+        this.movementMotors = new MovementMotors(hardwareMap, telemetry);
         this.opMode = opMode;
 
         // Initializing gyro setup
-        telemetry.addData("Gyroscope", "Calibrating");
-        telemetry.update();
-
         imu=hardwareMap.get(BNO055IMU.class,"imu");
         BNO055IMU.Parameters parameters=new BNO055IMU.Parameters();
         parameters.mode=BNO055IMU.SensorMode.IMU;
@@ -43,7 +39,6 @@ public class MoveWithGyro {
         imu.initialize(parameters);
 
         this.telemetryLogger.addData("Gyroscope", "Calibrated");
-        this.telemetryLogger.update();
     }
 
     public void setMovementPower(double power) throws IllegalArgumentException {
@@ -61,7 +56,7 @@ public class MoveWithGyro {
             power.BL += .05;
         }
 
-        motors.setPower(power.multiply(signs));
+        movementMotors.setPower(power.multiply(signs));
     }
 
     public void moveForward() {
@@ -84,60 +79,67 @@ public class MoveWithGyro {
         this.move(Signs.LEFT);
     }
 
-    private void moveAutonomous(int ticks, Power signs) {
-        motors.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motors.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        motors.setTargetPosition(
+    private void moveAutonomous(double cm, Power signs, boolean correctAfter) {
+        movementMotors.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        movementMotors.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        int ticks = cmToTicks(cm);
+        movementMotors.setTargetPosition(
                 (int) signs.FR * ticks, (int) signs.FL * ticks,
                 (int) signs.BR * ticks,(int) signs.BL *  ticks
         );
 
-        //this.resetAngle();
-
         Power power = new Power(movementPower);
-        motors.setPower(power);
+        movementMotors.setPower(power);
 
-        while (this.opMode.opModeIsActive() && this.motors.allBusy()) {
+        while (this.opMode.opModeIsActive() && this.movementMotors.allBusy()) {
             Power movementSigns = new Power(1.0);
             move(movementSigns);
         }
+        
+        if (correctAfter) {
+            this.correctPosition();
+        }
+        
     }
 
-    /** Move the robot forward for a fixed number of ticks.
+    /** Move the robot forward over a fixed distance.
      *
-     * @param ticks Desired number of motor ticks to move for.
+     * @param cm Desired distance to move the robot for.
+     * @param correctAfter Whether to correct the position of the robot after it stops moving or not.
      */
-    public void moveForwardAutonomous(int ticks) {
+    public void moveForwardAutonomous(double cm, boolean correctAfter) {
         this.movementPower.setDirection(DirectionCodes.FORWARD);
-        this.moveAutonomous(ticks, Signs.FORWARD);
+        this.moveAutonomous(cm, Signs.FORWARD, correctAfter);
     }
 
-    /** Move the robot backward for a fixed number of ticks.
+    /** Move the robot backward over a fixed distance
      *
-     * @param ticks Desired number of motor ticks to move for.
-     * @return The resulting powers for the 4 motors.
+     * @param cm Desired distance to move the robot for.
+     * @param correctAfter Whether to correct the position of the robot after it stops moving or not.
      */
-    public void moveBackAutonomous(int ticks) {
+    public void moveBackAutonomous(double cm, boolean correctAfter) {
         this.movementPower.setDirection(DirectionCodes.BACKWARD);
-        this.moveAutonomous(ticks, Signs.BACKWARD);
+        this.moveAutonomous(cm, Signs.BACKWARD, correctAfter);
     }
 
-    /** Move the robot to the right for a fixed number of ticks.
+    /** Move the robot to the right over a fixed distance.
      *
-     * @param ticks Desired number of motor ticks to move for.
+     * @param cm Desired distance of motor ticks to move for.
+     * @param correctAfter Whether to correct the position of the robot after it stops moving or not.
      */
-    public void moveRightAutonomous(int ticks) {
+    public void moveRightAutonomous(double cm, boolean correctAfter) {
         this.movementPower.setDirection(DirectionCodes.RIGHT);
-        this.moveAutonomous(ticks, Signs.RIGHT);
+        this.moveAutonomous(cm, Signs.RIGHT, correctAfter);
     }
 
-    /** Move the robot to the left for a fixed number of ticks.
+    /** Move the robot to the left over a fixed distance.
      *
-     * @param ticks Desired number of motor ticks to move for.
+     * @param cm Desired distance ticks to move for.
+     * @param correctAfter Whether to correct the position of the robot after it stops moving or not.
      */
-    public void moveLeftAutonomous(int ticks) {
+    public void moveLeftAutonomous(double cm, boolean correctAfter) {
         this.movementPower.setDirection(DirectionCodes.LEFT);
-        this.moveAutonomous(ticks, Signs.LEFT);
+        this.moveAutonomous(cm, Signs.LEFT, correctAfter);
     }
 
     private double getAngleDiff(Orientation angle) {
@@ -167,43 +169,52 @@ public class MoveWithGyro {
         anglesList.add(deltaAngle);
         //this.rotate(-1 * Math.signum(deltaAngle) * Math.max((Math.abs(deltaAngle) - 5), 0), false);
 
-        this.motors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.movementMotors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         while (Math.abs(deltaAngle) > 3 && !anglesList.stayedConstant()) {
             if (deltaAngle < 0) {
                 // Turn left
-                motors.setPower(new Power(this.correctionPower));
+                movementMotors.setPower(new Power(this.correctionPower));
             } else {
                 // Turn right
-                motors.setPower(new Power(-1.0 * this.correctionPower));
+                movementMotors.setPower(new Power(-1.0 * this.correctionPower));
             }
             deltaAngle = getAngleDiff(this.lastAngle);
             anglesList.add(deltaAngle);
         }
 
-        this.motors.setPower(new Power());
+        this.movementMotors.setPower(new Power());
 
     }
 
     public void stopAll() {
-        motors.setPower(new Power());
+        movementMotors.setPower(new Power());
     }
 
-    public void rotate(double angle, boolean resetAngle) {
+    public void spinAutonomous(double angle, boolean resetAngle) {
         Power signs;
         if (angle < 0) signs = Signs.ROTATE_RIGHT;
         else signs = Signs.ROTATE_LEFT;
-        this.motors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.movementMotors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         Orientation refAngle = getCurrentAngle();
         double angleDiff = getAngleDiff(refAngle);
 
         while (Math.abs(angleDiff) < Math.abs(angle)) {
-            this.motors.setPower(signs.multiply(new Power(this.rotationPower)));
+            this.movementMotors.setPower(signs.multiply(new Power(this.rotationPower)));
             angleDiff = getAngleDiff(refAngle);
         }
         this.stopAll();
         if (resetAngle) this.resetAngle();
+    }
+
+    public void spin(double power, double direction) {
+        if (direction != 1 && direction != -1) return;
+        this.movementMotors.setPower((new Power(power)).multiply(new Power(direction)));
+    }
+
+    private int cmToTicks(double cm) {
+        return (int) (cm * Constants.TICKS_PER_CM);
     }
 
 }

@@ -26,7 +26,7 @@ public class Power {
         this.BL = bl;
     }
 
-    Power multiply(Power otherPower) {
+    public Power multiply(Power otherPower) {
         return new Power(
                 this.FR * otherPower.FR,
                 this.FL * otherPower.FL,
