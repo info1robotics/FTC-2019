@@ -25,7 +25,10 @@ public class TeleOpBruteForce extends BaseTeleOp{
             if (gamepad1.dpad_left) Utils.moveLeft(movementHandler, gamepad1, this);
             if (gamepad1.a) Utils.extendMineralArm(armsHandler, gamepad1, this);
             if (gamepad1.b) Utils.contractMineralArm(armsHandler, gamepad1, this);
-            if (gamepad1.y) Utils.changeMineralBrushDirection(armsHandler);
+            if (gamepad1.y) {
+                Utils.changeMineralBrushDirection(armsHandler);
+                while (gamepad1.y); // wait
+            }
             if (gamepad1.left_stick_x != 0) {
                 telemetry.addData("x coordinate", gamepad1.left_stick_x);
                 Utils.moveMineralArm(armsHandler, gamepad1, this);

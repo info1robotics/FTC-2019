@@ -54,4 +54,11 @@ public class MovementMotors {
         return (this.FR.isBusy() && this.FL.isBusy() && this.BR.isBusy() && this.BL.isBusy());
     }
 
+    public double getAveragePosition() {
+        return (Math.abs(BL.getCurrentPosition()) +
+                Math.abs(BR.getCurrentPosition()) +
+                Math.abs(FL.getCurrentPosition()) +
+                Math.abs(FR.getCurrentPosition())) / 4;
+    }
+
 }

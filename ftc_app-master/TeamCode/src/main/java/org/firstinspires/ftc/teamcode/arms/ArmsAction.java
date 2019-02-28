@@ -13,7 +13,7 @@ import org.firstinspires.ftc.teamcode.arms.constants.ServoPositions;
 public class ArmsAction {
 
     private ArmsServos armsServos;
-    private ArmsMotors armsMotors;
+    public ArmsMotors armsMotors;
     private LinearOpMode opMode;
     private Telemetry telemetry;
     private HardwareMap hardwareMap;
@@ -39,6 +39,8 @@ public class ArmsAction {
 
     public void descendFromLander(double powerFactor) {
         this.armsMotors.climbMotor.setPower(-1.0 * powerFactor * MotorSpeeds.CLIMB_MOTOR);
+        telemetry.addData("Ticks", this.armsMotors.climbMotor.getCurrentPosition());
+        telemetry.update();
     }
 
     public void descendFromLanderAutonomous() {
@@ -58,6 +60,10 @@ public class ArmsAction {
     public void moveMineralArmRight(double powerFactor) {
         telemetry.addData("Motor1 power", powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_1);
         telemetry.addData("Motor2 power", -1.0 * powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_2);
+        telemetry.addData("Motor1 ticks", armsMotors.collectMotorMove1.getCurrentPosition());
+        telemetry.addData("Motor2 ticks", armsMotors.collectMotorMove2.getCurrentPosition());
+        telemetry.addData("Motors ticks (avg)", (armsMotors.collectMotorMove2.getCurrentPosition() +
+                armsMotors.collectMotorMove1.getCurrentPosition()) / 2);
         telemetry.update();
         this.armsMotors.collectMotorMove1.setPower(powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_1);
         this.armsMotors.collectMotorMove2.setPower(-1.0 * powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_2);
@@ -81,6 +87,8 @@ public class ArmsAction {
 
     public void changeDirectionMineralArmBrush() {
         Servo.Direction originalDirection = this.armsServos.mineralArmBrush.getDirection();
+        telemetry.addData("Original direction", originalDirection);
+        telemetry.update();
         if (originalDirection == null) {
             this.armsServos.mineralArmBrush.setDirection(Servo.Direction.FORWARD);
         } else if (originalDirection.equals(Servo.Direction.FORWARD)) {
@@ -88,6 +96,7 @@ public class ArmsAction {
         } else {
             this.armsServos.mineralArmBrush.setDirection(Servo.Direction.FORWARD);
         }
+        this.armsServos.mineralArmBrush.setPosition(1);
     }
 
     public void dropMascot() {
@@ -122,6 +131,59 @@ public class ArmsAction {
         this.armsMotors.collectMotorMove1.setPower(0);
         this.armsMotors.collectMotorMove2.setPower(0);
         this.armsMotors.collectMotorExtend.setPower(0);
+    }
+
+    private void setCollectionMotorsToEncoder() {
+        this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+    }
+
+    private void setCollectionMotorsWithoutEncoder() {
+        this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    public void moveMineralArmToLander() {
+        setCollectionMotorsToEncoder();
+        MineralArmPowerInTransition powerGenerator = new MineralArmPowerInTransition();
+
+        this.armsMotors.collectMotorMove1.setTargetPosition(MotorTicks.MINERAL_ARM_TO_LANDER);
+        this.armsMotors.collectMotorMove2.setTargetPosition(-1 * MotorTicks.MINERAL_ARM_TO_LANDER);
+
+        while (this.opMode.opModeIsActive() &&
+                (armsMotors.collectMotorMove1.isBusy() && armsMotors.collectMotorMove2.isBusy())) {
+            int ticks = (Math.abs(armsMotors.collectMotorMove1.getCurrentPosition()) +
+                    Math.abs(armsMotors.collectMotorMove2.getCurrentPosition())) / 2;
+            double power = powerGenerator.getPower(ticks);
+            this.armsMotors.collectMotorMove1.setPower(power);
+            this.armsMotors.collectMotorMove2.setPower(power);
+        }
+
+        setCollectionMotorsWithoutEncoder();
+    }
+
+    public void moveMineralArmToCrater() {
+        setCollectionMotorsToEncoder();
+        MineralArmPowerInTransition powerGenerator = new MineralArmPowerInTransition();
+
+        this.armsMotors.collectMotorMove1.setTargetPosition(MotorTicks.MINERAL_ARM_TO_CRATER);
+        this.armsMotors.collectMotorMove2.setTargetPosition(MotorTicks.MINERAL_ARM_TO_CRATER);
+
+        while (this.opMode.opModeIsActive() && armsMotors.collectMotorMove1.isBusy() &&
+                this.armsMotors.collectMotorMove2.isBusy()) {
+            int ticks = (Math.abs(armsMotors.collectMotorMove1.getCurrentPosition()) +
+                    Math.abs(armsMotors.collectMotorMove2.getCurrentPosition())) / 2;
+            double power = powerGenerator.getPower(ticks);
+            this.armsMotors.collectMotorMove1.setPower(power);
+            this.armsMotors.collectMotorMove2.setPower(power);
+
+        }
+
+        setCollectionMotorsWithoutEncoder();
     }
 
 }
