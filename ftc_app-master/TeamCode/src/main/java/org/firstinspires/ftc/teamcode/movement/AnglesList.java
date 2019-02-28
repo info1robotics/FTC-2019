@@ -2,6 +2,15 @@ package org.firstinspires.ftc.teamcode.movement;
 
 import java.util.ArrayList;
 
+/**
+ *      List of angles used when applying corrections.
+ *
+ *      Supports:
+ *          * adding new angles to the list.
+ *          * checking if the past N angles stayed the same - used to forcibly exit the correction
+ *          loop in order to avoid an infinite loop.
+ */
+
 public class AnglesList extends ArrayList {
 
     private final int SIZE_LIMIT = 10;

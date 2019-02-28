@@ -5,6 +5,18 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+
+/**
+ *      Class representing the four motors used in the movement process.
+ *
+ *      Supports
+ *          * setting the same RunMode to all 4 motors.
+ *          * setting target positions to the 4 motors.
+ *          * setting power to the motors
+ *          * checking if all motors are still busy.
+ */
+
+
 public class MovementMotors {
 
     private DcMotor FR;
@@ -52,13 +64,6 @@ public class MovementMotors {
 
     public boolean allBusy() {
         return (this.FR.isBusy() && this.FL.isBusy() && this.BR.isBusy() && this.BL.isBusy());
-    }
-
-    public double getAveragePosition() {
-        return (Math.abs(BL.getCurrentPosition()) +
-                Math.abs(BR.getCurrentPosition()) +
-                Math.abs(FL.getCurrentPosition()) +
-                Math.abs(FR.getCurrentPosition())) / 4;
     }
 
 }

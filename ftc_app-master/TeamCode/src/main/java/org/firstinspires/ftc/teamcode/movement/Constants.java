@@ -1,5 +1,9 @@
 package org.firstinspires.ftc.teamcode.movement;
 
+/**
+ *      Class of constants used in the movement process.
+ */
+
 public class Constants {
 
     static final double POWER_HIGHER_LIMIT = 0.7;

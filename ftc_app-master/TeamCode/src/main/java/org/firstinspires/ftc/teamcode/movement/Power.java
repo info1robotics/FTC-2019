@@ -1,5 +1,13 @@
 package org.firstinspires.ftc.teamcode.movement;
 
+/**
+ *      Class representing the power distribution over the four motors controlling the robot's
+ *      movement.
+ *
+ *      Supports:
+ *          * multiplying two powers - used to apply different spinning directions and/ or
+ *          corrections applied to the motors.
+ */
 public class Power {
 
     public double FR = 0.0;

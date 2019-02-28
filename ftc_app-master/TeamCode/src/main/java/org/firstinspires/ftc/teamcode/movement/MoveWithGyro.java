@@ -12,6 +12,19 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+/**
+ *      Class handling robot movement using the gyroscope.
+ *
+ *      Supports
+ *          * Correcting the robot's position relative to the start angle.
+ *          * Moving autonomously in 4 directions: front, back, left and right.
+ *          * Moving in the 4 directions above when in controlled mode.
+ *          * Spinning autonomously for a fixed number of degrees.
+ *          * Spinning in controlled mode, both clockwise and counter-clockwise.
+ *          * Resetting the reference angle used in corrections.
+ *          * Setting a new (asympthotical) movement power.
+ */
+
 public class MoveWithGyro {
 
     public BNO055IMU imu;

@@ -1,5 +1,15 @@
 package org.firstinspires.ftc.teamcode.movement;
 
+/**
+ *      Class representing motor powers which increase asympthotically to a maximum power.
+ *
+ *      Supports
+ *          * setting a new direction of movement.
+ *          * getting the current power value, which gets updated over time.
+ *          * setting a new target power.
+ */
+
+
 public class AsympthoticalPower {
 
     private int direction = -1;
@@ -30,12 +40,6 @@ public class AsympthoticalPower {
             this.actualPower = (this.targetPower + this.actualPower) / 2;
         count += 1;
         return actualPower;
-    }
-
-    public void stopMoving() {
-        this.direction = -1;
-        this.count = 0;
-        this.actualPower = this.BASE_POWER;
     }
 
     public void setNewTargetPower(double power) throws IllegalArgumentException{

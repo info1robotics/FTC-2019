@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode.movement;
 
+/**
+ *      Class storing signs corresponding to the different directions the robot can move in.
+ */
 public class Signs {
 
     static final Power FORWARD = new Power(1, -1, 1, -1);
