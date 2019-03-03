@@ -2,10 +2,16 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.teleop.buttons.Utils;
+/**
+ *      Initial (not elegant) implementation of a TeleOp class.
+ *
+ *      Supports
+ *          * Initializing the required handlers.
+ *          * Mapping controller buttons to actions.
+ */
 
 @TeleOp
-public class TeleOpBruteForce extends BaseTeleOp{
+public class  TeleOpBruteForce extends BaseTeleOp{
 
     @Override
     void mapButtonsToActions() {

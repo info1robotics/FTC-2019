@@ -9,6 +9,13 @@ import org.firstinspires.ftc.teamcode.teleop.buttons.ButtonNames;
 
 import java.util.HashSet;
 
+/**
+ *      Base (abstract) class for the controlled stage.
+ *
+ *      Supports
+ *          * Initializing the required handlers (for arms & movement)
+ */
+
 abstract class BaseTeleOp extends LinearOpMode {
 
     MoveWithGyro movementHandler;

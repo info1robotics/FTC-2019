@@ -180,11 +180,14 @@ public class MoveWithGyro {
         AnglesList anglesList = new AnglesList();
         double deltaAngle = getAngleDiff(this.lastAngle);
         anglesList.add(deltaAngle);
+
         //this.rotate(-1 * Math.signum(deltaAngle) * Math.max((Math.abs(deltaAngle) - 5), 0), false);
 
         this.movementMotors.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         while (Math.abs(deltaAngle) > 3 && !anglesList.stayedConstant()) {
+            telemetryLogger.addData("Correction angle", deltaAngle);
+            telemetryLogger.update();
             if (deltaAngle < 0) {
                 // Turn left
                 movementMotors.setPower(new Power(this.correctionPower));
@@ -196,8 +199,7 @@ public class MoveWithGyro {
             anglesList.add(deltaAngle);
         }
 
-        this.movementMotors.setPower(new Power());
-
+        this.stopAll();
     }
 
     public void stopAll() {
@@ -223,7 +225,8 @@ public class MoveWithGyro {
 
     public void spin(double power, double direction) {
         if (direction != 1 && direction != -1) return;
-        this.movementMotors.setPower((new Power(power)).multiply(new Power(direction)));
+        Power actualPower = (new Power(power)).multiply(Constants.ROTATION_POWER_TELEOP).multiply(new Power(direction));
+        movementMotors.setPower(actualPower);
     }
 
     private int cmToTicks(double cm) {

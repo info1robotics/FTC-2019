@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.vision_smecher;
+package org.firstinspires.ftc.teamcode.vision;
 
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -10,6 +10,16 @@ import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
+
+/**
+ *      Class handling the vision task in autonomous mode.
+ *
+ *      Supports
+ *          * Initializing the webcam from the robot.
+ *          * Configuring the classification engine.
+ *          * Activating/ Deactivating recognition.
+ *          * Getting the closest possible object that is recognised by the classifier.
+ */
 
 public class WebcamVision{
 
@@ -46,21 +56,6 @@ public class WebcamVision{
         if (tfod != null) {
             tfod.deactivate();
         }
-    }
-
-    public boolean seeGoldMineral() {
-        if (tfod != null) {
-            List<Recognition> recognitions = tfod.getUpdatedRecognitions();
-            if (recognitions == null) {
-                return false;
-            }
-
-            for (Recognition r: recognitions) {
-                if (r.getLabel().equals(LABEL_GOLD_MINERAL)) return true;
-            }
-
-        }
-        return false;
     }
 
     public int getDetected() {

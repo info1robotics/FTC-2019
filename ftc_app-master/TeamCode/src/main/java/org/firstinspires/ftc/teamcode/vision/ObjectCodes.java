@@ -1,4 +1,8 @@
-package org.firstinspires.ftc.teamcode.vision_smecher;
+package org.firstinspires.ftc.teamcode.vision;
+
+/**
+ *      Class of constants mapping objects to a specific (integer) code.
+ */
 
 public class ObjectCodes {
 

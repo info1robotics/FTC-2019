@@ -1,12 +1,11 @@
 package org.firstinspires.ftc.teamcode.oldies;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.movement.MoveWithGyro;
-import org.firstinspires.ftc.teamcode.vision_smecher.ObjectCodes;
-import org.firstinspires.ftc.teamcode.vision_smecher.WebcamVision;
+import org.firstinspires.ftc.teamcode.vision.ObjectCodes;
+import org.firstinspires.ftc.teamcode.vision.WebcamVision;
 
 @Disabled
 public class MoveWithGyroTestAutonomous extends LinearOpMode {

@@ -5,6 +5,14 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+/**
+ *      Class used to handle motors related to the robot's arms.
+ *
+ *      Supports
+ *          * Initializing the motors to the desired position.
+ *          * Setting the same RunMode on all motors.
+ */
+
 public class ArmsMotors {
 
     public DcMotor climbMotor;
