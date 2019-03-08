@@ -23,7 +23,7 @@ public class Power {
         this.FL = this.FR = this.BR = this.BL = power;
     }
 
-    public Power (AsympthoticalPower power) {
+    public Power (Speed power) {
         this.FL = this.FR = this.BR = this.BL = power.getPower();
     }
 

@@ -1,0 +1,302 @@
+@startuml
+
+title __OLDIES's Class Diagram__\n
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class AutonomousTestCrater {
+          - servoGold : Servo
+          {static} - CM_TO_TICKS_FACTOR : int
+          {static} - DEFAULT_POWER : double
+          - motorArm : DcMotor
+          + runOpMode()
+          - foundInFirstTryPolicy()
+          - foundInSecondTryPolicy()
+          - foundInThirdTryPolicy()
+          - lookForGold()
+          - foundGold()
+          - engage()
+          - cmToTicks()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class AutonomousTestZona {
+          {static} - CM_TO_TICKS_FACTOR : int
+          {static} - DEFAULT_POWER : double
+          {static} - SCANNING_POWER : double
+          + runOpMode()
+          - foundInFirstTryPolicy()
+          - foundInSecondTryPolicy()
+          - foundInThirdTryPolicy()
+          - lookForGold()
+          - foundGold()
+          - engage()
+          - cmToTicks()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class ConceptObjectDetectionWebcam {
+          {static} - TFOD_MODEL_ASSET : String
+          {static} - LABEL_GOLD_MINERAL : String
+          {static} - LABEL_SILVER_MINERAL : String
+          {static} - VUFORIA_KEY : String
+          - vuforia : VuforiaLocalizer
+          - tfod : TFObjectDetector
+          + runOpMode()
+          - initVuforia()
+          - initTfod()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class ConceptScanServo {
+          {static} ~ INCREMENT : double
+          {static} ~ CYCLE_MS : int
+          {static} ~ MAX_POS : double
+          {static} ~ MIN_POS : double
+          ~ servo : Servo
+          ~ position : double
+          ~ rampUp : boolean
+          + runOpMode()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class HardwareTeleOp {
+          ~ motorFL : DcMotor
+          ~ motorFR : DcMotor
+          ~ motorBL : DcMotor
+          ~ motorBR : DcMotor
+          ~ motorArm : DcMotor
+          ~ motorMinRaise : DcMotor
+          ~ motorMinEnlarge : DcMotor
+          ~ imu : BNO055IMU
+          - FLT : int
+          - FRT : int
+          - BLT : int
+          - BRT : int
+          - rotationPower : double
+          - movePower : double
+          ~ hwMap : HardwareMap
+          + HardwareTeleOp()
+          + init()
+          + setDirection()
+          + setEnlarge()
+          + setRetract()
+          + varRotation()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class MoveWithGyroTestAutonomous {
+          ~ count : int
+          + runOpMode()
+          - lookForGold()
+          - foundGold()
+          - engage()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class MoveWithGyroTestControlled {
+          + runOpMode()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class SensorBNO055IMU {
+          ~ imu : BNO055IMU
+          ~ angles : Orientation
+          ~ gravity : Acceleration
+          + runOpMode()
+          ~ composeTelemetry()
+          ~ formatAngle()
+          ~ formatDegrees()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class SensorBNO055IMUCalibration {
+          ~ imu : BNO055IMU
+          ~ angles : Orientation
+          + runOpMode()
+          ~ composeTelemetry()
+          ~ formatAngle()
+          ~ formatDegrees()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class TeleOP {
+          + runOpMode()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class TestObjectDetectionWebcam {
+          + runOpMode()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class gyrotestauto {
+          - motorFL : DcMotor
+          - motorFR : DcMotor
+          - motorBL : DcMotor
+          - motorBR : DcMotor
+          ~ imu : BNO055IMU
+          ~ lastAngles : Orientation
+          ~ globalAngle : double
+          ~ correction : double
+          ~ power : double
+          + runOpMode()
+          - resetAngle()
+          - getAngle()
+          - checkDirection()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class servoplm {
+          ~ servoGold : Servo
+          + runOpMode()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class testgyroandencoders {
+          ~ motorFL : DcMotor
+          ~ motorFR : DcMotor
+          ~ motorBL : DcMotor
+          ~ motorBR : DcMotor
+          ~ imu : BNO055IMU
+          ~ lastAngles : Orientation
+          ~ globalAngle : double
+          ~ correction : double
+          ~ power : double
+          + runOpMode()
+          - getAngle()
+          - resetAngle()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class tryHard {
+          ~ angles : Orientation
+          + runOpMode()
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class vuforia {
+          {static} - TFOD_MODEL_ASSET : String
+          {static} - LABEL_GOLD_MINERAL : String
+          {static} - LABEL_SILVER_MINERAL : String
+          - vuforia : VuforiaLocalizer
+          - tfod : TFObjectDetector
+          - ok : boolean
+          + runOpMode()
+          - initVuforia()
+          - initTfod()
+          + get_ok()
+      }
+    }
+  }
+  
+
+  AutonomousTestCrater -up-|> LinearOpMode
+  AutonomousTestCrater o-- MoveWithGyro : movement
+  AutonomousTestCrater o-- WebcamVision : webCamViewer
+  LinearOpModeHelper -up-|> Runnable
+  AutonomousTestZona -up-|> LinearOpMode
+  AutonomousTestZona o-- MoveWithGyro : movement
+  AutonomousTestZona o-- WebcamVision : webCamViewer
+  LinearOpModeHelper -up-|> Runnable
+  ConceptObjectDetectionWebcam -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  ConceptScanServo -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  MoveWithGyroTestAutonomous -up-|> LinearOpMode
+  MoveWithGyroTestAutonomous o-- MoveWithGyro : movement
+  MoveWithGyroTestAutonomous o-- WebcamVision : webCamViewer
+  LinearOpModeHelper -up-|> Runnable
+  MoveWithGyroTestControlled -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  SensorBNO055IMU -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  SensorBNO055IMUCalibration -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  TeleOP -up-|> LinearOpMode
+  TeleOP o-- MoveWithGyro : movement
+  LinearOpModeHelper -up-|> Runnable
+  TestObjectDetectionWebcam -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  gyrotestauto -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  servoplm -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+  testgyroandencoders -up-|> LinearOpMode
+  testgyroandencoders o-- MovementMotors : movementMotors
+  LinearOpModeHelper -up-|> Runnable
+  tryHard -up-|> LinearOpMode
+  tryHard o-- HardwareTeleOp : robot
+  LinearOpModeHelper -up-|> Runnable
+  vuforia -up-|> LinearOpMode
+  LinearOpModeHelper -up-|> Runnable
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

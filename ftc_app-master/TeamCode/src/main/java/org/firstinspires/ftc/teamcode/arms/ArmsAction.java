@@ -9,6 +9,7 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.arms.constants.MotorSpeeds;
 import org.firstinspires.ftc.teamcode.arms.constants.MotorTicks;
 import org.firstinspires.ftc.teamcode.arms.constants.ServoPositions;
+import org.firstinspires.ftc.teamcode.utils.ServoPosition;
 
 /**
  *      Class used to handle all necessary actions related to robot arms.
@@ -51,6 +52,15 @@ public class ArmsAction {
         }
     }
 
+    public void extendArmAutonomous(int ticks) {
+        armsMotors.collectMotorExtend.setTargetPosition(ticks);
+        while (opMode.opModeIsActive() && armsMotors.collectMotorExtend.isBusy()) {
+            armsMotors.collectMotorExtend.setPower(MotorSpeeds.COLLECT_MOTOR_EXTEND);
+            opMode.idle();
+        }
+        stopAll();
+    }
+
     public void climbOnLander(double powerFactor) {
         this.armsMotors.climbMotor.setPower(powerFactor * MotorSpeeds.CLIMB_MOTOR);
     }
@@ -66,6 +76,7 @@ public class ArmsAction {
         this.armsMotors.climbMotor.setTargetPosition(MotorTicks.DESCEND_ROBOT);
         while (opMode.opModeIsActive() && this.armsMotors.climbMotor.isBusy()) {
             this.armsMotors.climbMotor.setPower(MotorSpeeds.CLIMB_MOTOR);
+            opMode.idle();
         }
     }
 
@@ -137,8 +148,12 @@ public class ArmsAction {
         this.setMineralBoxPosition(ServoPositions.MINERAL_BOX_TILT.start);
     }
 
+    public void setMineralBoxDrop() {
+        this.setMineralBoxPosition(ServoPositions.MINERAL_BOX_TILT.end);
+    }
+
     public void setMineralBoxTo45() {
-        this.setMineralBoxPosition(ServoPositions.MINERAL_BOX_TILT.end/2);
+        this.setMineralBoxPosition(ServoPositions.MINERAL_BOX_45);
     }
 
     public void stopMineralBrush() {

@@ -1,0 +1,378 @@
+@startuml
+
+title __FTCROBOTCONTROLLER's Class Diagram__\n
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class BasicOpMode_Iterative {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class BasicOpMode_Linear {
+    }
+  }
+  
+
+  package com.qualcomm.ftcrobotcontroller {
+    class BuildConfig {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptCompassCalibration {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptDIMAsIndicator {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptI2cAddressChange {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptNullOp {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptRampMotorSpeed {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptRevSPARKMini {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptScanServo {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptSoundsASJava {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptSoundsOnBotJava {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptTelemetry {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptTensorFlowObjectDetection {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptTensorFlowObjectDetectionWebcam {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptVuMarkIdentification {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptVuMarkIdentificationWebcam {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptVuforiaNavRoverRuckus {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptVuforiaNavigation {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class ConceptVuforiaNavigationWebcam {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.internal {
+    class FtcOpModeRegister {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.internal {
+    class FtcRobotControllerActivity {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class HardwarePushbot {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class PushbotAutoDriveByEncoder_Linear {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class PushbotAutoDriveByGyro_Linear {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class PushbotAutoDriveByTime_Linear {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class PushbotAutoDriveToLine_Linear {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class PushbotTeleopPOV_Linear {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class PushbotTeleopTank_Iterative {
+    }
+  }
+  
+
+  package org.firstinspires.inspection {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.ftcrobotcontroller {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.robotcore {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.hardware {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.WirelessP2p {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.ftccommon {
+    class R {
+    }
+  }
+  
+
+  package com.google.blocks {
+    class R {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SampleRevBlinkinLedDriver {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorAdafruitRGB {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorBNO055IMU {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorBNO055IMUCalibration {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorColor {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorDIO {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorDigitalTouch {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorKLNavxMicro {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorMRColor {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorMRCompass {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorMRGyro {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorMRIrSeeker {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorMROpticalDistance {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorMRRangeSensor {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorREV2mDistance {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.robotcontroller.external.samples {
+    class SensorREVColorDistance {
+    }
+  }
+  
+
+  BasicOpMode_Iterative -up-|> OpMode
+  BasicOpMode_Linear -up-|> LinearOpMode
+  ConceptCompassCalibration -up-|> LinearOpMode
+  ConceptCompassCalibration o-- HardwarePushbot : robot
+  ConceptDIMAsIndicator -up-|> LinearOpMode
+  ConceptI2cAddressChange -up-|> LinearOpMode
+  ConceptNullOp -up-|> OpMode
+  ConceptRampMotorSpeed -up-|> LinearOpMode
+  ConceptRevSPARKMini -up-|> LinearOpMode
+  ConceptScanServo -up-|> LinearOpMode
+  ConceptSoundsASJava -up-|> LinearOpMode
+  ConceptSoundsOnBotJava -up-|> LinearOpMode
+  ConceptTelemetry -up-|> LinearOpMode
+  ConceptTensorFlowObjectDetection -up-|> LinearOpMode
+  ConceptTensorFlowObjectDetectionWebcam -up-|> LinearOpMode
+  ConceptVuMarkIdentification -up-|> LinearOpMode
+  ConceptVuMarkIdentificationWebcam -up-|> LinearOpMode
+  ConceptVuforiaNavRoverRuckus -up-|> LinearOpMode
+  ConceptVuforiaNavigation -up-|> LinearOpMode
+  ConceptVuforiaNavigationWebcam -up-|> LinearOpMode
+  FtcOpModeRegister -up-|> OpModeRegister
+  FtcRobotControllerActivity -up-|> Activity
+  FtcRobotControllerActivity o-- SharedPreferencesListener : sharedPreferencesListener
+  PushbotAutoDriveByEncoder_Linear -up-|> LinearOpMode
+  PushbotAutoDriveByEncoder_Linear o-- HardwarePushbot : robot
+  PushbotAutoDriveByGyro_Linear -up-|> LinearOpMode
+  PushbotAutoDriveByGyro_Linear o-- HardwarePushbot : robot
+  PushbotAutoDriveByTime_Linear -up-|> LinearOpMode
+  PushbotAutoDriveByTime_Linear o-- HardwarePushbot : robot
+  PushbotAutoDriveToLine_Linear -up-|> LinearOpMode
+  PushbotAutoDriveToLine_Linear o-- HardwarePushbot : robot
+  PushbotTeleopPOV_Linear -up-|> LinearOpMode
+  PushbotTeleopPOV_Linear o-- HardwarePushbot : robot
+  PushbotTeleopTank_Iterative -up-|> OpMode
+  PushbotTeleopTank_Iterative o-- HardwarePushbot : robot
+  SampleRevBlinkinLedDriver -up-|> OpMode
+  SampleRevBlinkinLedDriver o-- DisplayKind : displayKind
+  SensorAdafruitRGB -up-|> LinearOpMode
+  SensorBNO055IMU -up-|> LinearOpMode
+  SensorBNO055IMUCalibration -up-|> LinearOpMode
+  SensorColor -up-|> LinearOpMode
+  SensorDIO -up-|> LinearOpMode
+  SensorDigitalTouch -up-|> LinearOpMode
+  SensorKLNavxMicro -up-|> LinearOpMode
+  SensorMRColor -up-|> LinearOpMode
+  SensorMRCompass -up-|> LinearOpMode
+  SensorMRGyro -up-|> LinearOpMode
+  SensorMRIrSeeker -up-|> LinearOpMode
+  SensorMROpticalDistance -up-|> LinearOpMode
+  SensorMRRangeSensor -up-|> LinearOpMode
+  SensorREV2mDistance -up-|> LinearOpMode
+  SensorREVColorDistance -up-|> LinearOpMode
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

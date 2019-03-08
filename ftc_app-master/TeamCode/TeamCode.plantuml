@@ -1,0 +1,631 @@
+@startuml
+
+title __TEAMCODE's Class Diagram__\n
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class AnglesList {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      class ArmsAction {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      class ArmsMotors {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      class ArmsServos {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class AsympthoticalPower {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      class AutonomousCraterNoMascot {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      class AutonomousDepotNoMascot {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class AutonomousTestCrater {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class AutonomousTestZona {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      abstract class BaseAutonomous {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.teleop {
+      abstract class BaseTeleOp {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    class BuildConfig {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.teleop {
+      package org.firstinspires.ftc.teamcode.teleop.buttons {
+        abstract class Button {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.teleop {
+      package org.firstinspires.ftc.teamcode.teleop.buttons {
+        abstract class ButtonAction {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.teleop {
+      package org.firstinspires.ftc.teamcode.teleop.buttons {
+        class ButtonNames {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class ConceptObjectDetectionWebcam {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class ConceptScanServo {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class Constants {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      package org.firstinspires.ftc.teamcode.autonomous.constants {
+        class CraterConstants {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      package org.firstinspires.ftc.teamcode.movement.deprecated {
+        class Direction {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class DirectionCodes {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      package org.firstinspires.ftc.teamcode.movement.deprecated {
+        class DirectionsList {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      class DistanceTest {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      package org.firstinspires.ftc.teamcode.autonomous.constants {
+        class GeneralConstants {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.AutonomousOld {
+      class HWPTest {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.AutonomousOld {
+      class HardwarePushbot {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class HardwareTeleOp {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      package org.firstinspires.ftc.teamcode.movement.deprecated {
+        class Interval {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      package org.firstinspires.ftc.teamcode.movement.deprecated {
+        class Limits {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      class MineralArmPowerInTransition {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      class MineralHitTest {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      package org.firstinspires.ftc.teamcode.arms.constants {
+        class MotorSpeeds {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      package org.firstinspires.ftc.teamcode.arms.constants {
+        class MotorTicks {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class MoveWithGyro {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class MoveWithGyroTestAutonomous {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class MoveWithGyroTestControlled {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      package org.firstinspires.ftc.teamcode.movement.deprecated {
+        class Movement {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class MovementMotors {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.vision {
+      class ObjectCodes {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class Power {
+      }
+    }
+  }
+  
+
+  package com.qualcomm.hardware {
+    class R {
+    }
+  }
+  
+
+  package com.google.ftcresearch.tfod {
+    class R {
+    }
+  }
+  
+
+  package com.google.blocks {
+    class R {
+    }
+  }
+  
+
+  package org.firstinspires.inspection {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.ftccommon {
+    class R {
+    }
+  }
+  
+
+  package org.tensorflow.lite {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.robotcore {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.WirelessP2p {
+    class R {
+    }
+  }
+  
+
+  package com.qualcomm.ftcrobotcontroller {
+    class R {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    class R {
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.autonomous {
+      class RecognitionTest {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class SensorBNO055IMU {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class SensorBNO055IMUCalibration {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.utils {
+      class ServoPosition {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.arms {
+      package org.firstinspires.ftc.teamcode.arms.constants {
+        class ServoPositions {
+        }
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.movement {
+      class Signs {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class TeleOP {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.teleop {
+      class TeleOpBruteForce {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class TestObjectDetectionWebcam {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.teleop {
+      class Utils {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.vision {
+      class WebcamVision {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class gyrotestauto {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.AutonomousOld {
+      class mainAuto {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.AutonomousOld {
+      class mainAuto2 {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class servoplm {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.AutonomousOld {
+      class test {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class testgyroandencoders {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class tryHard {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.oldies {
+      class vuforia {
+      }
+    }
+  }
+  
+
+  package org.firstinspires.ftc.teamcode {
+    package org.firstinspires.ftc.teamcode.AutonomousOld {
+      class vuforiaa {
+      }
+    }
+  }
+  
+
+  AnglesList -up-|> ArrayList
+  ArmsAction o-- ArmsServos : armsServos
+  ArmsAction o-- ArmsMotors : armsMotors
+  AutonomousCraterNoMascot -up-|> BaseAutonomous
+  AutonomousDepotNoMascot -up-|> BaseAutonomous
+  AutonomousTestCrater -up-|> LinearOpMode
+  AutonomousTestCrater o-- MoveWithGyro : movement
+  AutonomousTestCrater o-- WebcamVision : webCamViewer
+  AutonomousTestZona -up-|> LinearOpMode
+  AutonomousTestZona o-- MoveWithGyro : movement
+  AutonomousTestZona o-- WebcamVision : webCamViewer
+  BaseAutonomous -up-|> LinearOpMode
+  BaseAutonomous o-- MoveWithGyro : movementHandler
+  BaseAutonomous o-- ArmsAction : armsHandler
+  BaseAutonomous o-- WebcamVision : visionHandler
+  BaseTeleOp -up-|> LinearOpMode
+  BaseTeleOp o-- MoveWithGyro : movementHandler
+  BaseTeleOp o-- ArmsAction : armsHandler
+  Button o-- ButtonAction : action
+  ConceptObjectDetectionWebcam -up-|> LinearOpMode
+  ConceptScanServo -up-|> LinearOpMode
+  DirectionsList -up-|> ArrayList
+  DistanceTest -up-|> LinearOpMode
+  HWPTest -up-|> LinearOpMode
+  HWPTest o-- HardwarePushbot : robot
+  MineralHitTest -up-|> BaseAutonomous
+  MoveWithGyro o-- AsympthoticalPower : movementPower
+  MoveWithGyro o-- MovementMotors : movementMotors
+  MoveWithGyroTestAutonomous -up-|> LinearOpMode
+  MoveWithGyroTestAutonomous o-- MoveWithGyro : movement
+  MoveWithGyroTestAutonomous o-- WebcamVision : webCamViewer
+  MoveWithGyroTestControlled -up-|> LinearOpMode
+  MovementMotors o-- Power : WEIGHT_CORRECTIONS
+  RecognitionTest -up-|> LinearOpMode
+  SensorBNO055IMU -up-|> LinearOpMode
+  SensorBNO055IMUCalibration -up-|> LinearOpMode
+  TeleOP -up-|> LinearOpMode
+  TeleOP o-- MoveWithGyro : movement
+  TeleOpBruteForce -up-|> BaseTeleOp
+  TestObjectDetectionWebcam -up-|> LinearOpMode
+  gyrotestauto -up-|> LinearOpMode
+  mainAuto -up-|> LinearOpMode
+  mainAuto o-- HardwarePushbot : robot
+  mainAuto2 -up-|> LinearOpMode
+  mainAuto2 o-- HardwarePushbot : robot
+  servoplm -up-|> LinearOpMode
+  test -up-|> LinearOpMode
+  testgyroandencoders -up-|> LinearOpMode
+  testgyroandencoders o-- MovementMotors : movementMotors
+  tryHard -up-|> LinearOpMode
+  tryHard o-- HardwareTeleOp : robot
+  vuforia -up-|> LinearOpMode
+  vuforiaa -up-|> LinearOpMode
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

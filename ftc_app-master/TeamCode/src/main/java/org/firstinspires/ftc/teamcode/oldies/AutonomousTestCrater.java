@@ -21,7 +21,7 @@ public class AutonomousTestCrater extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        movement = new MoveWithGyro(telemetry, hardwareMap, this);
+        movement = new MoveWithGyro(telemetry, hardwareMap, this, true);
         webCamViewer = new WebcamVision(hardwareMap, telemetry);
         servoGold = hardwareMap.get(Servo.class, "servoGold");
         motorArm=hardwareMap.get(DcMotor.class,"motorArm");

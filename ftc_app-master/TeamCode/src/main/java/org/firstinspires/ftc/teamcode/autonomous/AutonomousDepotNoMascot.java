@@ -17,8 +17,9 @@ public class AutonomousDepotNoMascot extends BaseAutonomous{
 
     @Override
     void park() {
-        movementHandler.spinAutonomous(135, true);
-        movementHandler.moveLeftAutonomous(60, true);
+        movementHandler.spinAutonomous(45, true);
+        movementHandler.moveRightAutonomous(10, true);
+        armsHandler.extendArmAutonomous(-2000);
     }
 
     @Override

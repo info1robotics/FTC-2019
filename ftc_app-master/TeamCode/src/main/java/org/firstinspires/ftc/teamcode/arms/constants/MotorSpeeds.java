@@ -7,7 +7,7 @@ package org.firstinspires.ftc.teamcode.arms.constants;
 public class MotorSpeeds {
 
     public static final double COLLECT_MOTOR_MOVE_1_RIGHT = 0.7;
-    public static final double COLLECT_MOTOR_MOVE_2_RIGHT = 0.7 ;
+    public static final double COLLECT_MOTOR_MOVE_2_RIGHT = 0.7;
     public static final double COLLECT_MOTOR_MOVE_1_LEFT = 0.3;
     public static final double COLLECT_MOTOR_MOVE_2_LEFT = 0.3;
     public static final double COLLECT_MOTOR_EXTEND = 1;
