@@ -35,6 +35,7 @@ public class MoveWithGyro {
     private Telemetry telemetryLogger;
     public MovementMotors movementMotors;
     private LinearOpMode opMode;
+    private boolean correctPosition = true;
 
     public MoveWithGyro(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode opMode) {
         this.movementPower = new AsympthoticalPower(Constants.POWER_HIGHER_LIMIT);
@@ -52,6 +53,10 @@ public class MoveWithGyro {
         imu.initialize(parameters);
 
         this.telemetryLogger.addData("Gyroscope", "Calibrated");
+    }
+
+    public void turnCorrectionOnOff() {
+        correctPosition = !correctPosition;
     }
 
     public void setMovementPower(double power) throws IllegalArgumentException {
@@ -177,6 +182,7 @@ public class MoveWithGyro {
     }
 
     public void correctPosition() {
+        if (!correctPosition) return;
         AnglesList anglesList = new AnglesList();
         double deltaAngle = getAngleDiff(this.lastAngle);
         anglesList.add(deltaAngle);
