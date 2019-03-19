@@ -20,12 +20,20 @@ public class ArmsServos {
     CRServo mineralArmBrush;
     public Servo mineralBoxTilt;
     Servo macotBoxTilt;
+    Servo collectBoxTilt;
+    Servo dropBoxTilt;
 
     ArmsServos(HardwareMap hardwareMap, Telemetry telemetry) {
         mineralArmBrush = hardwareMap.get(CRServo.class, "mineralArmBrush");
         mineralHit = hardwareMap.get(Servo.class, "mineralHit");
+        /*
+             UNCOMMENT LINES BELLOW IF REVERTING TO ORIGINAL MINERAL ARM.
+
         mineralBoxTilt = hardwareMap.get(Servo.class, "mineralBoxTilt");
         mineralBoxTilt.setDirection(Servo.Direction.REVERSE);
+        */
+        collectBoxTilt = hardwareMap.get(Servo.class, "collectBoxTilt");
+        dropBoxTilt = hardwareMap.get(Servo.class, "dropBoxTilt");
         //blah = hardwareMap.get(CRServo.class, "blah");
         //CRServo.Direction dir = blah.getDirection();
         //macotBoxTilt = hardwareMap.get(Servo.class, "mascotBoxTilt");

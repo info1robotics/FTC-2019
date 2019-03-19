@@ -13,4 +13,10 @@ public class MotorSpeeds {
     public static final double COLLECT_MOTOR_EXTEND = 1;
     public static final double CLIMB_MOTOR = 1;
 
+    /*
+            SPEEDS FOR NEW ARCHITECTURE
+     */
+
+    public static final double COLLECT_ARM_MOTOR = 1;
+    public static final double DROP_ARM_MOTOR = 1;
 }

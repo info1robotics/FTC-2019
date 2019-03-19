@@ -46,10 +46,12 @@ public class  TeleOpBruteForce extends BaseTeleOp{
             if (gamepad1.left_trigger > 0) Utils.spinLeft(movementHandler, gamepad1, this, armsHandler);
             if (gamepad1.right_trigger > 0) Utils.spinRight(movementHandler, gamepad1, this, armsHandler);
             if (gamepad1.left_bumper) Utils.tiltMineralBoxUnloading(armsHandler);
-            if (gamepad1.right_bumper) Utils.tiltMineralBoxCollecting(armsHandler);
+            if (gamepad1.right_bumper)  Utils.tiltMineralBoxCollecting(armsHandler);
+
             /**
              *  PENTRU TESTE DE 45 DE GRADE LA SERVO:
              *      Utils.mineralBoxMoving(armsHandler);
+             *      Utils.tiltMineralBoxCollecting(armsHandler);
              *  ^
              *  |
              *  pe un buton

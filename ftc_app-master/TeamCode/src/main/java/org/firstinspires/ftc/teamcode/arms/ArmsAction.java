@@ -51,6 +51,8 @@ public class ArmsAction {
             this.setMineralBoxTo0();
         }
     }
+    /*
+         UNCOMMENT LINES BELLOW IF REVERTING TO ORIGINAL MINERAL ARM.
 
     public void extendArmAutonomous(int ticks) {
         armsMotors.collectMotorExtend.setTargetPosition(ticks);
@@ -60,6 +62,8 @@ public class ArmsAction {
         }
         stopAll();
     }
+
+    */
 
     public void climbOnLander(double powerFactor) {
         this.armsMotors.climbMotor.setPower(powerFactor * MotorSpeeds.CLIMB_MOTOR);
@@ -86,6 +90,9 @@ public class ArmsAction {
         this.armsServos.mineralHit.setPosition(ServoPositions.MINERAL_HIT.start);
     }
 
+    /*
+                 UNCOMMENT LINES BELLOW IF REVERTING TO ORIGINAL MINERAL ARM.
+
     public void moveMineralArmRight(double powerFactor) {
         telemetry.addData("Motor1 power", powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_1_RIGHT);
         telemetry.addData("Motor2 power", -1.0 * powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_2_RIGHT);
@@ -97,6 +104,7 @@ public class ArmsAction {
         this.armsMotors.collectMotorMove1.setPower(powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_1_RIGHT);
         this.armsMotors.collectMotorMove2.setPower(-1.0 * powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_2_RIGHT);
     }
+
 
     public void moveMineralArmLeft(double powerFactor) {
         telemetry.addData("Motor1 power", -1.0 * powerFactor * MotorSpeeds.COLLECT_MOTOR_MOVE_1_LEFT);
@@ -116,6 +124,7 @@ public class ArmsAction {
     public void contractMineralArm(double powerFactor) {
         this.armsMotors.collectMotorExtend.setPower(-1.0 * powerFactor * MotorSpeeds.COLLECT_MOTOR_EXTEND);
     }
+    */
 
     public void changeDirectionMineralArmBrush() {
         CRServo.Direction originalDirection = this.armsServos.mineralArmBrush.getDirection();
@@ -161,12 +170,14 @@ public class ArmsAction {
         this.armsServos.mineralArmBrush.setPower(0);
     }
 
+    /*
+             UNCOMMENT LINES BELLOW IF REVERTING TO ORIGINAL MINERAL ARM.
+
     public void moveMineralArmToPark() {
         this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-
     }
 
     public void stopAll() {
@@ -176,12 +187,14 @@ public class ArmsAction {
         this.armsMotors.collectMotorExtend.setPower(0);
     }
 
+
     private void setCollectionMotorsToEncoder() {
         this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         this.armsMotors.collectMotorMove2.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
+
 
     private void setCollectionMotorsWithoutEncoder() {
         this.armsMotors.collectMotorMove1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -225,6 +238,43 @@ public class ArmsAction {
         }
 
         setCollectionMotorsWithoutEncoder();
+    }
+    */
+
+    public void extendCollectArm() {
+        this.armsMotors.collectMotor.setPower(MotorSpeeds.COLLECT_ARM_MOTOR);
+    }
+
+    public void contractCollectArm() {
+        this.armsMotors.collectMotor.setPower(-1.0 * MotorSpeeds.COLLECT_ARM_MOTOR);
+    }
+
+    public void extendDropArm() {
+        this.armsMotors.dropMotor.setPower(MotorSpeeds.DROP_ARM_MOTOR);
+    }
+
+    public void contractDropArm() {
+        this.armsMotors.dropMotor.setPower(-1.0 * MotorSpeeds.DROP_ARM_MOTOR);
+    }
+
+    public void moveCollectBoxCollecting() {
+        this.armsServos.collectBoxTilt.setPosition(ServoPositions.COLLECT_BOX_TILT.end);
+    }
+
+    public void moveCollectBoxDropping() {
+        this.armsServos.collectBoxTilt.setPosition(ServoPositions.COLLECT_BOX_TILT.start);
+    }
+
+    public void moveDropBoxCollect() {
+        this.armsServos.dropBoxTilt.setPosition(ServoPositions.DROP_BOX_TILT.start);
+    }
+
+    public void moveDropBoxDrop() {
+        this.armsServos.dropBoxTilt.setPosition(ServoPositions.DROP_BOX_TILT.end);
+    }
+
+    public void stopAll() {
+
     }
 
 }
