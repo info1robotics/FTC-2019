@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.movement.Power;
 public class MoveWithGyroTestControlled extends LinearOpMode {
     @Override
     public void runOpMode() {
-        MoveWithGyro movement = new MoveWithGyro(telemetry, hardwareMap, this, true);
+        MoveWithGyro movement = new MoveWithGyro(telemetry, hardwareMap, this);
         boolean positionCorrect=true;
         movement.resetAngle();
         waitForStart();

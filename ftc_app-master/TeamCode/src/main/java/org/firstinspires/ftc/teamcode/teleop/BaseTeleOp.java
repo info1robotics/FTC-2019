@@ -23,7 +23,7 @@ abstract class BaseTeleOp extends LinearOpMode {
     HashSet<Button> buttonsList;
 
     void initialize() {
-        movementHandler = new MoveWithGyro(this.telemetry, this.hardwareMap, this, false);
+        movementHandler = new MoveWithGyro(this.telemetry, this.hardwareMap, this);
         armsHandler = new ArmsAction(this.hardwareMap, this.telemetry, this, false);
         buttonsList = new HashSet<>();
         addButtonsToList();

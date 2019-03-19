@@ -17,7 +17,7 @@ public class MoveWithGyroTestAutonomous extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         //webCamViewer = new WebcamVision(hardwareMap, telemetry);
-        movement = new MoveWithGyro(telemetry, hardwareMap, this, true);
+        movement = new MoveWithGyro(telemetry, hardwareMap, this);
         movement.resetAngle();
         waitForStart();
         movement.moveForwardAutonomous(1000, true);

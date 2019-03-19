@@ -16,7 +16,7 @@ public class DistanceTest extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
-        MoveWithGyro movementHandler = new MoveWithGyro(telemetry, hardwareMap, this, false);
+        MoveWithGyro movementHandler = new MoveWithGyro(telemetry, hardwareMap, this);
         movementHandler.stopAll();
         waitForStart();
         int cm = (int) (1000 / Constants.TICKS_PER_CM);

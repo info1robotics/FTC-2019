@@ -29,21 +29,15 @@ public class MoveWithGyro {
 
     public BNO055IMU imu;
     private Orientation lastAngle = new Orientation();
-    private Speed movementPower;
+    private AsympthoticalPower movementPower;
     private double correctionPower = .2;
     private double rotationPower = .2;
     private Telemetry telemetryLogger;
     public MovementMotors movementMotors;
     private LinearOpMode opMode;
-    private boolean correctPosition = true;
 
-    public MoveWithGyro(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode opMode, boolean
-                        constant) {
-        if (constant) {
-            this.movementPower = new ConstantSpeed(Constants.POWER_HIGHER_LIMIT);
-        } else {
-            this.movementPower = new AsympthoticalPower(Constants.POWER_HIGHER_LIMIT);
-        }
+    public MoveWithGyro(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode opMode) {
+        this.movementPower = new AsympthoticalPower(Constants.POWER_HIGHER_LIMIT);
         this.telemetryLogger = telemetry;
         this.movementMotors = new MovementMotors(hardwareMap, telemetry);
         this.opMode = opMode;
@@ -113,7 +107,6 @@ public class MoveWithGyro {
         while (this.opMode.opModeIsActive() && this.movementMotors.allBusy()) {
             Power movementSigns = new Power(1.0);
             move(movementSigns);
-            opMode.idle();
         }
         
         if (correctAfter) {
@@ -184,7 +177,6 @@ public class MoveWithGyro {
     }
 
     public void correctPosition() {
-        if (! correctPosition) return;
         AnglesList anglesList = new AnglesList();
         double deltaAngle = getAngleDiff(this.lastAngle);
         anglesList.add(deltaAngle);
@@ -239,10 +231,6 @@ public class MoveWithGyro {
 
     private int cmToTicks(double cm) {
         return (int) (cm * Constants.TICKS_PER_CM);
-    }
-
-    public void turnCorrectionOnOff() {
-        this.correctPosition = !correctPosition;
     }
 
 }

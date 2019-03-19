@@ -28,7 +28,7 @@ public class testgyroandencoders extends LinearOpMode {
     MovementMotors movementMotors;
     @Override
     public void runOpMode(){
-        MoveWithGyro movement = new MoveWithGyro(telemetry, hardwareMap, this, true);
+        MoveWithGyro movement = new MoveWithGyro(telemetry, hardwareMap, this);
         movement.setMovementPower(power);
         imu = movement.imu;
         waitForStart();

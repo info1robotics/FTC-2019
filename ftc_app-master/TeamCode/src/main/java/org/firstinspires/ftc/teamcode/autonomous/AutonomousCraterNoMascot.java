@@ -17,9 +17,8 @@ public class AutonomousCraterNoMascot extends BaseAutonomous {
 
     @Override
     void park() {
-        movementHandler.spinAutonomous(-125, true);
-        movementHandler.moveRightAutonomous(60, true);
-        armsHandler.extendArmAutonomous(-2000);
+        movementHandler.spinAutonomous(45, true);
+        movementHandler.moveLeftAutonomous(60, true);
     }
 
     @Override

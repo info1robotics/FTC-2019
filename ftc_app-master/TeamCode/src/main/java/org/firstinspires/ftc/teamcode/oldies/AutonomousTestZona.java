@@ -18,7 +18,7 @@ public class AutonomousTestZona extends LinearOpMode {
 
     @Override
     public void runOpMode() {
-        movement = new MoveWithGyro(telemetry, hardwareMap, this, true);
+        movement = new MoveWithGyro(telemetry, hardwareMap, this);
         webCamViewer = new WebcamVision(hardwareMap, telemetry);
         movement.resetAngle();
         telemetry.update();

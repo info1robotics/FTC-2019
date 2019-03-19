@@ -10,7 +10,7 @@ package org.firstinspires.ftc.teamcode.movement;
  */
 
 
-public class AsympthoticalPower extends Speed{
+public class AsympthoticalPower {
 
     private int direction = -1;
     public int count = 0;
@@ -20,7 +20,6 @@ public class AsympthoticalPower extends Speed{
     private int RESET_AFTER = 50;
 
     public AsympthoticalPower(double target) {
-        super();
         this.setNewTargetPower(target);
     }
 
