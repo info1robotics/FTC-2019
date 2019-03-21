@@ -27,7 +27,8 @@ abstract class BaseAutonomous extends LinearOpMode {
 
 
     void initialize() {
-        movementHandler = new MoveWithGyro(telemetry, hardwareMap, this);
+        movementHandler = new MoveWithGyro(telemetry, hardwareMap, this, true);
+        movementHandler.setMovementPower(0.3);
         armsHandler = new ArmsAction(hardwareMap, telemetry, this, true);
         visionHandler = new WebcamVision(hardwareMap, telemetry);
     }
@@ -62,11 +63,12 @@ abstract class BaseAutonomous extends LinearOpMode {
         visionHandler.activateRecognition();
         if (foundGold()) foundInFirstTryPolicy();
         else {
-            movementHandler.moveBackAutonomous(25, true);
+            movementHandler.moveBackAutonomous(30, true);
             movementHandler.moveLeftAutonomous(45, true);
             if (foundGold()) foundInSecondTryPolicy();
             else foundInThirdTryPolicy();
         }
+
         visionHandler.deactivateRecognition();
     }
 
@@ -76,25 +78,25 @@ abstract class BaseAutonomous extends LinearOpMode {
 
 
     private void foundInFirstTryPolicy() {
-        movementHandler.moveBackAutonomous(40, true);
+        movementHandler.moveBackAutonomous(50, false);
         hitMineral();
         movementHandler.moveForwardAutonomous(13, true);
-        movementHandler.moveRightAutonomous(115, true);
+        movementHandler.moveRightAutonomous(145, true);
     }
 
     private void foundInSecondTryPolicy() {
-        //movementHandler.moveBackAutonomous(20, true);
+        movementHandler.moveBackAutonomous(16, true);
         hitMineral();
-        //movementHandler.moveForwardAutonomous(20, true);
-        movementHandler.moveRightAutonomous(165, true);
+        movementHandler.moveForwardAutonomous(16, true);
+        movementHandler.moveRightAutonomous(175, true);
     }
 
     private void foundInThirdTryPolicy() {
-        movementHandler.moveRightAutonomous(82, true);
-        movementHandler.moveBackAutonomous(20, true);
+        movementHandler.moveRightAutonomous(80, true);
+        movementHandler.moveBackAutonomous(16, true);
         hitMineral();
-        movementHandler.moveForwardAutonomous(20, true);
-        movementHandler.moveRightAutonomous(75, true);
+        movementHandler.moveForwardAutonomous(16, true);
+        movementHandler.moveRightAutonomous(95, true);
     }
 
 

@@ -31,9 +31,6 @@ public class ArmsMotors {
         collectMotorMove1 = hardwareMap.get(DcMotor.class, "collectMotorMove1");
         collectMotorMove2 = hardwareMap.get(DcMotor.class, "collectMotorMove2");
 
-        collectMotor = hardwareMap.get(DcMotor.class, "collectMotor");
-        dropMotor = hardwareMap.get(DcMotor.class, "dropMotor");
-
         telemetry.addData("Arms motors", "Set up.");
     }
 

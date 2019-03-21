@@ -29,8 +29,6 @@ public class ArmsServos {
 
         mineralBoxTilt = hardwareMap.get(Servo.class, "mineralBoxTilt");
         mineralBoxTilt.setDirection(Servo.Direction.REVERSE);
-        collectBoxTilt = hardwareMap.get(Servo.class, "collectBoxTilt");
-        dropBoxTilt = hardwareMap.get(Servo.class, "dropBoxTilt");
 
         telemetry.addData("Arms servos", "Setup");
     }

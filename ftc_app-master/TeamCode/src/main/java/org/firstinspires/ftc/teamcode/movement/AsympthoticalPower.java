@@ -10,7 +10,7 @@ package org.firstinspires.ftc.teamcode.movement;
  */
 
 
-public class AsympthoticalPower {
+public class AsympthoticalPower extends Speed{
 
     private int direction = -1;
     public int count = 0;

@@ -29,7 +29,7 @@ public class MoveWithGyro {
 
     public BNO055IMU imu;
     private Orientation lastAngle = new Orientation();
-    private AsympthoticalPower movementPower;
+    private Speed movementPower;
     private double correctionPower = .2;
     private double rotationPower = .2;
     private Telemetry telemetryLogger;
@@ -37,8 +37,13 @@ public class MoveWithGyro {
     private LinearOpMode opMode;
     private boolean correctPosition = true;
 
-    public MoveWithGyro(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode opMode) {
-        this.movementPower = new AsympthoticalPower(Constants.POWER_HIGHER_LIMIT);
+    public MoveWithGyro(Telemetry telemetry, HardwareMap hardwareMap, LinearOpMode opMode, boolean
+            constant) {
+        if (constant) {
+            this.movementPower = new ConstantSpeed(Constants.POWER_HIGHER_LIMIT);
+        } else {
+            this.movementPower = new AsympthoticalPower(Constants.POWER_HIGHER_LIMIT);
+        }
         this.telemetryLogger = telemetry;
         this.movementMotors = new MovementMotors(hardwareMap, telemetry);
         this.opMode = opMode;
@@ -53,10 +58,6 @@ public class MoveWithGyro {
         imu.initialize(parameters);
 
         this.telemetryLogger.addData("Gyroscope", "Calibrated");
-    }
-
-    public void turnCorrectionOnOff() {
-        correctPosition = !correctPosition;
     }
 
     public void setMovementPower(double power) throws IllegalArgumentException {
@@ -112,12 +113,13 @@ public class MoveWithGyro {
         while (this.opMode.opModeIsActive() && this.movementMotors.allBusy()) {
             Power movementSigns = new Power(1.0);
             move(movementSigns);
+            opMode.idle();
         }
-        
+
         if (correctAfter) {
             this.correctPosition();
         }
-        
+
     }
 
     /** Move the robot forward over a fixed distance.
@@ -182,7 +184,7 @@ public class MoveWithGyro {
     }
 
     public void correctPosition() {
-        if (!correctPosition) return;
+        if (! correctPosition) return;
         AnglesList anglesList = new AnglesList();
         double deltaAngle = getAngleDiff(this.lastAngle);
         anglesList.add(deltaAngle);
@@ -237,6 +239,10 @@ public class MoveWithGyro {
 
     private int cmToTicks(double cm) {
         return (int) (cm * Constants.TICKS_PER_CM);
+    }
+
+    public void turnCorrectionOnOff() {
+        this.correctPosition = !correctPosition;
     }
 
 }

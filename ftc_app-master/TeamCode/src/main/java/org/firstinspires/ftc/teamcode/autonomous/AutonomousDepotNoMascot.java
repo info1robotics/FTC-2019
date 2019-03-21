@@ -21,6 +21,10 @@ public class AutonomousDepotNoMascot extends BaseAutonomous{
         movementHandler.moveLeftAutonomous(60, true);
     }
 
+    void dropMascot() {
+        // NOT DONE HERE
+    }
+
     @Override
     public void runOpMode() throws InterruptedException {
         initialize();

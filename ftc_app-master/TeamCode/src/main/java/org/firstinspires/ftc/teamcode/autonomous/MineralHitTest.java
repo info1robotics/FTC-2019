@@ -12,6 +12,11 @@ public class MineralHitTest extends BaseAutonomous {
     }
 
     @Override
+    void dropMascot() {
+
+    }
+
+    @Override
     public void runOpMode() throws InterruptedException {
         initialize();
         telemetry.update();
